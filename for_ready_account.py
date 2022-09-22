@@ -8,8 +8,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from dotenv import load_dotenv
-import account
-
 
 load_dotenv()
 
@@ -90,13 +88,13 @@ for i in range(len(seeds_array)):
     chainlist_inputs = browser.find_elements(By.XPATH, "//input")
     chainlist_inputs[0].send_keys("bsc")
 
-    sleep(2)
+    sleep(5)
 
     main_page = browser.current_window_handle
 
     browser.find_element(By.XPATH, '//span[text()="Add to Metamask"]').click()
 
-    sleep(2)
+    sleep(5)
 
     for handle in browser.window_handles:
         if handle != main_page:
@@ -132,7 +130,7 @@ for i in range(len(seeds_array)):
         EC.visibility_of_element_located((By.XPATH, '//span[text()="MetaMask"]'))
     ).click()
 
-    sleep(2)
+    sleep(5)
 
     for handle in browser.window_handles:
         if handle != main_page:
@@ -152,6 +150,8 @@ for i in range(len(seeds_array)):
     sleep(5)
 
     browser.get("https://element.market/reward")
+    
+    sleep(5)
 
     main_page = browser.current_window_handle
 
@@ -159,7 +159,7 @@ for i in range(len(seeds_array)):
         EC.visibility_of_element_located((By.XPATH, '//div[text()="Check-In"]'))
     ).click()
 
-    sleep(2)
+    sleep(5)
 
     for handle in browser.window_handles:
         if handle != main_page:
@@ -175,4 +175,4 @@ for i in range(len(seeds_array)):
 
     sleep(5)
     
-    print(f"Wallet with seed: {seeds_array[i]} DONE!")
+    print(f"{i} - Wallet with seed: {seeds_array[i]} - DONE!")
