@@ -1,1 +1,6 @@
-# element_aut
+### Quickstart
+
+'''python
+pip install selenium
+'''
+

@@ -13,10 +13,10 @@ load_dotenv()
 
 PATH1 = "./element/metamask/10.18.4_0.crx"
 PATH2 = "./element/xpath/1.0.2_0.crx"
-SEED = os.getenv('SEED')
+SEED = os.getenv("SEED")
 
 
-EXTENSION_ID = 'nkbihfbeogaeaoehlefnkodbefgpgknn'
+EXTENSION_ID = "nkbihfbeogaeaoehlefnkodbefgpgknn"
 
 # Настройка отпечатка
 options = webdriver.ChromeOptions()
@@ -42,10 +42,10 @@ browser.find_element(By.XPATH, '//button[text()="Get Started"]').click()
 browser.find_element(By.XPATH, '//button[text()="No Thanks"]').click()
 browser.find_element(By.XPATH, '//button[text()="Import wallet"]').click()
 
-inputs = browser.find_elements(By.XPATH, '//input')
+inputs = browser.find_elements(By.XPATH, "//input")
 
 os.system("echo %s| clip" % SEED.strip())
-inputs[0].send_keys(Keys.CONTROL, 'v')
+inputs[0].send_keys(Keys.CONTROL, "v")
 
 inputs[24].send_keys("123qweR!")
 inputs[25].send_keys("123qweR!")
@@ -53,17 +53,19 @@ inputs[26].click()
 
 browser.find_element(By.XPATH, '//button[text()="Import"]').click()
 
-WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.XPATH, '//button[text()="All Done"]'))).click()
+WebDriverWait(browser, 20).until(
+    EC.visibility_of_element_located((By.XPATH, '//button[text()="All Done"]'))
+).click()
 
 ### ADD bsc to metamask
 
-browser.get(
-    "https://chainlist.org/"
-)
+browser.get("https://chainlist.org/")
 
 main_page = browser.current_window_handle
 
-WebDriverWait(browser, 10).until(EC.visibility_of_element_located((By.XPATH, '//span[text()="Connect Wallet"]'))).click()
+WebDriverWait(browser, 10).until(
+    EC.visibility_of_element_located((By.XPATH, '//span[text()="Connect Wallet"]'))
+).click()
 
 sleep(2)
 
@@ -73,12 +75,16 @@ for handle in browser.window_handles:
 
 browser.switch_to.window(metamask_page)
 
-WebDriverWait(browser, 10).until(EC.visibility_of_element_located((By.XPATH, '//button[text()="Next"]'))).click()
-WebDriverWait(browser, 10).until(EC.visibility_of_element_located((By.XPATH, '//button[text()="Connect"]'))).click()
+WebDriverWait(browser, 10).until(
+    EC.visibility_of_element_located((By.XPATH, '//button[text()="Next"]'))
+).click()
+WebDriverWait(browser, 10).until(
+    EC.visibility_of_element_located((By.XPATH, '//button[text()="Connect"]'))
+).click()
 
 browser.switch_to.window(main_page)
 
-chainlist_inputs = browser.find_elements(By.XPATH, '//input')
+chainlist_inputs = browser.find_elements(By.XPATH, "//input")
 chainlist_inputs[0].send_keys("bsc")
 
 sleep(2)
@@ -98,20 +104,26 @@ browser.maximize_window()
 
 sleep(5)
 
-WebDriverWait(browser, 10).until(EC.visibility_of_element_located((By.XPATH, '//button[text()="Approve"]'))).click()
-WebDriverWait(browser, 10).until(EC.visibility_of_element_located((By.XPATH, '//button[text()="Switch network"]'))).click()
+WebDriverWait(browser, 10).until(
+    EC.visibility_of_element_located((By.XPATH, '//button[text()="Approve"]'))
+).click()
+WebDriverWait(browser, 10).until(
+    EC.visibility_of_element_located((By.XPATH, '//button[text()="Switch network"]'))
+).click()
 
 browser.switch_to.window(main_page)
 
 ### ELEMENT ->
-browser.get(
-    os.getenv('INV_LINK')
-)
+browser.get(os.getenv("INV_LINK"))
 
 main_page = browser.current_window_handle
 
-WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.XPATH, '//button[text()="Accept invitation"]'))).click()
-WebDriverWait(browser, 10).until(EC.visibility_of_element_located((By.XPATH, '//span[text()="MetaMask"]'))).click()
+WebDriverWait(browser, 20).until(
+    EC.visibility_of_element_located((By.XPATH, '//button[text()="Accept invitation"]'))
+).click()
+WebDriverWait(browser, 10).until(
+    EC.visibility_of_element_located((By.XPATH, '//span[text()="MetaMask"]'))
+).click()
 
 
 sleep(2)
@@ -122,8 +134,12 @@ for handle in browser.window_handles:
 
 browser.switch_to.window(metamask_page)
 
-WebDriverWait(browser, 10).until(EC.visibility_of_element_located((By.XPATH, '//button[text()="Next"]'))).click()
-WebDriverWait(browser, 10).until(EC.visibility_of_element_located((By.XPATH, '//button[text()="Connect"]'))).click()
+WebDriverWait(browser, 10).until(
+    EC.visibility_of_element_located((By.XPATH, '//button[text()="Next"]'))
+).click()
+WebDriverWait(browser, 10).until(
+    EC.visibility_of_element_located((By.XPATH, '//button[text()="Connect"]'))
+).click()
 
 browser.switch_to.window(main_page)
 
@@ -131,8 +147,12 @@ sleep(5)
 
 main_page = browser.current_window_handle
 
-WebDriverWait(browser, 10).until(EC.visibility_of_element_located((By.XPATH, '//button[text()="Accept invitation"]'))).click()
-WebDriverWait(browser, 10).until(EC.visibility_of_element_located((By.XPATH, '//button[text()="Confirm"]'))).click()
+WebDriverWait(browser, 10).until(
+    EC.visibility_of_element_located((By.XPATH, '//button[text()="Accept invitation"]'))
+).click()
+WebDriverWait(browser, 10).until(
+    EC.visibility_of_element_located((By.XPATH, '//button[text()="Confirm"]'))
+).click()
 
 sleep(10)
 
@@ -142,10 +162,14 @@ for handle in browser.window_handles:
 
 browser.switch_to.window(metamask_page)
 
-WebDriverWait(browser, 10).until(EC.visibility_of_element_located((By.XPATH, '//button[text()="Sign"]'))).click()
+WebDriverWait(browser, 10).until(
+    EC.visibility_of_element_located((By.XPATH, '//button[text()="Sign"]'))
+).click()
 
 browser.switch_to.window(main_page)
 
-WebDriverWait(browser, 10).until(EC.visibility_of_element_located((By.XPATH, '//button[text()="Done"]'))).click()
+WebDriverWait(browser, 10).until(
+    EC.visibility_of_element_located((By.XPATH, '//button[text()="Done"]'))
+).click()
 
 sleep(100000)
