@@ -26,6 +26,8 @@ for i in range(len(seeds_array)):
     options.add_argument("--lang=en-US")
     browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
+    print("Добавляю кошелек в метамаск")
+
     browser.get(
         "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#initialize/welcome"
     )
@@ -58,7 +60,11 @@ for i in range(len(seeds_array)):
         EC.visibility_of_element_located((By.XPATH, '//button[text()="All Done"]'))
     ).click()
 
+    print("Кошелек добавлен")
+
     ### ADD bsc to metamask
+
+    print("Добавляю BSC")
 
     browser.get("https://chainlist.org/")
 
@@ -114,9 +120,13 @@ for i in range(len(seeds_array)):
         )
     ).click()
 
+    print("BSC добавлена")
+
     browser.switch_to.window(main_page)
 
     ### ELEMENT ->
+    print("Перехожу к элементу")
+
     browser.get("https://element.market/bsc")
 
     main_page = browser.current_window_handle
@@ -150,7 +160,7 @@ for i in range(len(seeds_array)):
     sleep(5)
 
     browser.get("https://element.market/reward")
-    
+
     sleep(5)
 
     main_page = browser.current_window_handle
@@ -170,9 +180,13 @@ for i in range(len(seeds_array)):
     WebDriverWait(browser, 10).until(
         EC.visibility_of_element_located((By.XPATH, '//button[text()="Sign"]'))
     ).click()
-    
+
     browser.switch_to.window(main_page)
 
     sleep(5)
-    
+
+    print("Ежедневная транзакция подписана")
+
     print(f"{i} - Wallet with seed: {seeds_array[i]} - DONE!")
+
+    browser.quit()
